@@ -2,9 +2,9 @@ import streamlit as st
 
 pages = [
     st.Page(
-        page="exploratory_analysis", 
-        title="Exploratory Analysis",
-        icon=":material/analytics"
+        page="exploratory_analysis.py", 
+        title="Analyse Exploratoire",
+        icon=":material/analytics:"
     ),
 ]
 
