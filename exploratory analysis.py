@@ -30,7 +30,8 @@ print(", ".join(df.columns))
 print("\n Types de données par colonne :\n")
 print(df.dtypes)
 
-print("\n Matrice de corrélation :\n")
-print(df.corr())
+print("\n Vente hebdomadaire moyenne par magasin :\n")
+print(df.groupby("Store")["Weekly_Sales"].mean())
 
+print(df["Holiday_Flag"].value_counts())
 joblib.dump(df, "Walmart_Sales.pkl")
