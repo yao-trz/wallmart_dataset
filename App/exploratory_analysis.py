@@ -31,9 +31,9 @@ def plot_sales_boxplot(df: pd.DataFrame, store: list[int]):
     return fig
 
 @st.cache_data
-def plot_histograms(df: pd.DataFrame, col: str, nbins: int = 50):
+def plot_histograms(df: pd.DataFrame, col: str, store: list[int], nbins: int = 50):
     fig = px.histogram(
-        df, 
+        df[df["Store"].isin(store)], 
         x=col, 
         nbins=nbins,
     )
@@ -63,7 +63,7 @@ st.markdown("##### :red-badge[Types de données par colonne]")
 st.table(df.dtypes, hide_header=True)
 
 
-st.markdown("#### Analyse univariée")
+st.markdown("#### Analyse par magasin")
 
 st.multiselect(
     "Sélectionnez les magasins à analyser",
@@ -147,6 +147,7 @@ st.plotly_chart(
     plot_histograms(
         df, 
         st.session_state.col_selection, 
+        st.session_state.store_selection,
         nbins_2
     )
 )
