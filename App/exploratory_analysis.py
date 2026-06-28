@@ -1,13 +1,7 @@
 import streamlit as st
 import plotly.express as px
-import joblib
 import pandas as pd
-
-@st.cache_data
-def load_data() -> pd.DataFrame:
-    df: pd.DataFrame = joblib.load("../Walmart_Sales.pkl")
-
-    return df
+from load_data import load_data
 
 @st.cache_data
 def plot_sales_histogram(df: pd.DataFrame, store: list[int], nbins: int = 50):
@@ -63,7 +57,7 @@ st.markdown("##### :red-badge[Types de données par colonne]")
 st.table(df.dtypes, hide_header=True)
 
 
-st.markdown("#### Analyse par magasin")
+st.markdown("#### Analyse Exploratoire descriptive")
 
 st.multiselect(
     "Sélectionnez les magasins à analyser",
@@ -160,5 +154,3 @@ st.slider(
     step=1,
     key="nbins_slider_2"
 )
-
-st.markdown("#### Analyse selon les semaines fériées")
